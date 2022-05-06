@@ -1,0 +1,20 @@
+docker run --name db -p 5432:5432 --network=db -v "$PWD:/var/lib/postgresql/data" -e POSTGRES_PASSWORD=password -d postgres:alpine
+
+docker ps // to see container
+
+docker run -it --rm --network=db postgres:alpine psql -h db -U postgres // to get in postgres
+
+\q // quiting postgres
+
+create database personalitytest; // creating db table
+
+\l // to list databases
+
+\c personalitytest // connect to database
+
+\d // list everything
+
+\dt // list tables
+
+
+cat /Users/aysenurulu/Documents/softtech/src/main/resources/data_insert.sql | docker exec -i db psql -U postgres -d personalitytest // to insert quesion data
